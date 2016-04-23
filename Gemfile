@@ -8,6 +8,9 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder'
 
+gem 'faml'
+gem 'haml-rails'
+
 gem 'active_decorator'
 gem 'action_args'
 
