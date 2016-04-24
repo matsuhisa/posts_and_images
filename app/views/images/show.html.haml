@@ -1,0 +1,13 @@
+%p#notice= notice
+%p
+  %strong File name:
+  = @image.file_name
+%p
+  %strong Extension:
+  = @image.extension
+%p
+  %strong Description:
+  = @image.description
+= link_to 'Edit', edit_image_path(@image)
+|
+= link_to 'Back', images_path

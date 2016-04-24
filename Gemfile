@@ -13,7 +13,7 @@ gem 'haml-rails'
 
 gem 'active_decorator'
 gem 'action_args'
-
+gem 'erb2haml'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 group :development, :test do
