@@ -1,0 +1,6 @@
+%p= @post.title
+%p= @post.description
+
+= form_for @post do |f|
+  = render partial: 'hidden_params', locals: {form: f}
+  = f.submit '送信する'

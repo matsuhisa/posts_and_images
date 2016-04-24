@@ -1,6 +1,12 @@
 Rails.application.routes.draw do
   resources :images
-  resources :posts
+  resources :posts do
+    collection do
+      post '/confirm', to: 'posts#confirm', as: :confirm
+      get '/complete', to: 'posts#complete', as: :complete
+    end
+  end
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
