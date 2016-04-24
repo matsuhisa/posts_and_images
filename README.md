@@ -10,4 +10,22 @@
 
 # scaffold
 
+```
+rails generate scaffold Post title:string description:text
+rails generate scaffold Image file_name:string extension:string description:text
+rails generate model PostImage post_id:integer image_id:integer
+```
+
+# routes
+
+```routes.rb
+resources :images
+resources :posts do
+  collection do
+    post '/confirm', to: 'posts#confirm', as: :confirm
+    get '/complete', to: 'posts#complete', as: :complete
+  end
+end
+```
+
 # s3の設定
