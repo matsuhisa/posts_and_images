@@ -55,4 +55,10 @@ end
 
 ```
 
+# その他
+
+## quiet_assets
+
+assets のログを出さない
+
 # s3の設定
