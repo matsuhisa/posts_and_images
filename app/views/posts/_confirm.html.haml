@@ -15,6 +15,7 @@
     = f.fields_for 'images[]', image do |image_field|
       = image_field.hidden_field :file_name
       = image_field.hidden_field :description
+      = image_field.hidden_field :extension
 
   =# render partial: 'hidden_params', locals: {form: f}
   = f.submit '送信する'

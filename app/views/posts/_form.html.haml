@@ -23,17 +23,13 @@
   - @post.images.each do |image|
     = f.fields_for 'images[]', image do |image_field|
       .field
-        ファイル名
+        ファイル
         %br
-        = image_field.text_field :file_name
+        = image_field.file_field :file
       .field
         要約
         %br
         = image_field.text_area :description
-      .field
-        ファイル
-        %br
-        = image_field.file_field :file
 
   .actions
     = f.submit
