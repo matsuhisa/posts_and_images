@@ -17,6 +17,7 @@ gem 'erb2haml'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 group :development, :test do
+  gem 'quiet_assets'
   gem 'mysql2'
   gem 'byebug'
   gem 'view_source_map'
