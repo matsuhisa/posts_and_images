@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  permits :title, :description, images: [:file_name, :description]
+  permits :title, :description, images: [:file_name, :description, :file]
 
   def index
     @posts = Post.all
@@ -20,6 +20,12 @@ class PostsController < ApplicationController
     images = []
     if post['images'].to_a.any?
       post['images'].each_with_index do |image, index|
+        file = image['file']
+        if file
+          File.open('./tmp/'+ file.original_filename, 'wb') do |openfile|
+            openfile.write(file.read)
+          end
+        end
         images[index] = Image.new(image)
       end
       post['images'] = images
@@ -37,7 +43,7 @@ class PostsController < ApplicationController
   end
 
   def create(post)
-		images = []
+    images = []
     if post['images'].to_a.any?
       post['images'].each_with_index do |image, index|
         images[index] = Image.new(image)
