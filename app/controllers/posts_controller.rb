@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  permits :title, :description
+  permits :title, :description, images: [:file_name, :description]
 
   def index
     @posts = Post.all
@@ -11,17 +11,46 @@ class PostsController < ApplicationController
 
   def new
     @post = Post.new
+    2.times {
+      @post.images.build
+    }
   end
 
   def confirm(post)
-    @post = Post.new(post)
+    images = []
+    if post['images'].to_a.any?
+      post['images'].each_with_index do |image, index|
+        images[index] = Image.new(image)
+      end
+      post['images'] = images
+    end
+
+    if images.any?
+      @post = Post.new(post)
+    else
+      @post = Post.new(post)
+    end
+
     unless @post.valid?
       render(:new)
     end
   end
 
   def create(post)
-    @post = Post.new(post)
+		images = []
+    if post['images'].to_a.any?
+      post['images'].each_with_index do |image, index|
+        images[index] = Image.new(image)
+      end
+      post['images'] = images
+    end
+
+    if images.any?
+      @post = Post.new(post)
+    else
+      @post = Post.new(post)
+    end
+
     if @post.save
       redirect_to(complete_posts_url)
     else

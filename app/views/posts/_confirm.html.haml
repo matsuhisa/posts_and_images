@@ -1,6 +1,20 @@
 %p= @post.title
 %p= @post.description
+%div
+  - if @post.images.to_a.any?
+    - @post.images.each do |image|
+      = image.file_name
+      %br
+      = image.description
+      %br
 
 = form_for @post do |f|
-  = render partial: 'hidden_params', locals: {form: f}
+  = f.hidden_field(:title)
+  = f.hidden_field(:description)
+  - @post.images.each do |image|
+    = f.fields_for 'images[]', image do |image_field|
+      = image_field.hidden_field :file_name
+      = image_field.hidden_field :description
+
+  =# render partial: 'hidden_params', locals: {form: f}
   = f.submit '送信する'
