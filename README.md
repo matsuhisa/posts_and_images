@@ -28,4 +28,31 @@ resources :posts do
 end
 ```
 
+# association
+
+```ruby
+class Image < ActiveRecord::Base
+  has_many :post_images
+  has_many :posts, through: :post_images
+end
+```
+
+```ruby
+lass PostImage < ActiveRecord::Base
+  belongs_to :post
+  belongs_to :image
+end
+```
+
+```ruby
+class Post < ActiveRecord::Base
+  has_many :post_images
+  has_many :images, through: :post_images
+
+  validates :title, presence: true
+  validates :description, presence: true
+end
+
+```
+
 # s3の設定
