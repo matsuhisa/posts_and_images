@@ -25,11 +25,8 @@ class PostsController < ApplicationController
           File.open('./tmp/'+ file.original_filename, 'wb') do |openfile|
             openfile.write(file.read)
           end
-puts "-------"
-puts file.content_type
-puts "-------"
           image['file_name'] = file.original_filename
-          image['extension'] = file.content_type
+          image['extension'] = File.extname(file.original_filename)
           images[index] = Image.new(image)
         end
       end
