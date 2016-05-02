@@ -7,6 +7,10 @@
       %ul
         - @post.errors.full_messages.each do |message|
           %li= message
+      %ul
+        - @post.images.each do |image|
+          - image.errors.full_messages.each do |message|
+            %li= message
 
   .field
     = f.label :title
@@ -20,6 +24,10 @@
     = f.label :images
 
   - @post.images.each do |image|
+    %ul
+      - image.errors.full_messages.each do |message|
+        %li= message
+
     = f.fields_for 'images[]', image do |image_field|
       .field
         ファイル
