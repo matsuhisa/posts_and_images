@@ -55,10 +55,43 @@ end
 
 ```
 
+# 独自の Validates
+
+## config/application.rb
+
+```ruby
+config.autoload_paths += Dir["#{config.root}/app/validators"]
+```
+
+## app/validators/image_extension_validator.rb
+
+```ruby
+class ImageExtensionValidator < ActiveModel::EachValidator
+  def validate_each(record, attribute, value)
+    unless ['.jpg', '.jpeg', '.png', '.gif'].include?(value.downcase)
+      record.errors[attribute] << (options[:message] || "はJPEG、PNG、GIF形式のファイルのみです")
+    end
+  end
+end
+```
+
+## Image モデル
+
+```ruby
+class Image < ActiveRecord::Base
+  has_many :post_images
+  has_many :posts, through: :post_images
+
+  validates :extension, presence: true, image_extension: true
+
+  attr_accessor :file
+end
+```
+
 # その他
 
-## quiet_assets
+## gem :gem:
 
-assets のログを出さない
+* quiet_assets は、assets のログを出さないためのもの
 
-# s3の設定
+# S3の設定
