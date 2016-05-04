@@ -88,6 +88,10 @@ class Image < ActiveRecord::Base
 end
 ```
 
+## 確認画面
+
+
+
 # その他
 
 ## gem :gem:
