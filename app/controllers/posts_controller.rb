@@ -22,9 +22,10 @@ class PostsController < ApplicationController
       post['images'].each_with_index do |image, index|
 
         if file ||= image['file']
-          File.open('./tmp/'+ file.original_filename, 'wb') do |openfile|
-            openfile.write(file.read)
-          end
+          # File.open('./tmp/'+ file.original_filename, 'wb') do |openfile|
+          #   openfile.write(file.read)
+          # end
+          image['upload_file'] = file
           image['file_name'] = file.original_filename
           image['extension'] = File.extname(file.original_filename)
           images[index] = Image.new(image)

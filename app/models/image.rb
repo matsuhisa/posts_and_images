@@ -4,5 +4,5 @@ class Image < ActiveRecord::Base
 
   validates :extension, presence: true, image_extension: true
 
-  attr_accessor :file
+  attr_accessor :file, :upload_file
 end

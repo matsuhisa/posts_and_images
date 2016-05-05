@@ -1,9 +1,12 @@
+%h1 新規投稿
+
 %p= @post.title
 %p= @post.description
+
 %div
   - if @post.images.to_a.any?
     - @post.images.each do |image|
-      = image.file_name
+      = image_tag data_uri(image)
       %br
       = image.description
       %br
