@@ -6,7 +6,7 @@
 %div
   - if @post.images.to_a.any?
     - @post.images.each do |image|
-      = image_tag data_uri(image)
+      = image_tag s3_url(image.file_name)
       %br
       = image.description
       %br

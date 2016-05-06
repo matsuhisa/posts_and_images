@@ -21,10 +21,20 @@ class PostsController < ApplicationController
     if post['images'].to_a.any?
       post['images'].each_with_index do |image, index|
 
+s3 = Aws::S3::Client.new
+response = s3.list_buckets
+
         if file ||= image['file']
           # File.open('./tmp/'+ file.original_filename, 'wb') do |openfile|
           #   openfile.write(file.read)
           # end
+
+s3.put_object(
+    bucket: ENV['S3_BUCKET'],
+    body: file.read,
+    key: file.original_filename
+)
+
           image['upload_file'] = file
           image['file_name'] = file.original_filename
           image['extension'] = File.extname(file.original_filename)
