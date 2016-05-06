@@ -16,6 +16,9 @@ gem 'action_args'
 gem 'erb2haml'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
+gem 'aws-sdk'
+gem 'dotenv-rails', :require => 'dotenv/rails-now'
+
 group :development, :test do
   gem 'quiet_assets'
   gem 'mysql2'
