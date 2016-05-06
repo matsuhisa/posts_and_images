@@ -111,6 +111,48 @@ end
 
 ## gem :gem:
 
+### quiet_assets
+
 * quiet_assets は、assets のログを出さないためのもの
 
+### aws-sdk
+
+### dotenv-rails
+
 # S3の設定
+
+## .env
+
+```
+AWS_REGION=ap-northeast-1
+AWS_ACCESS_KEY_ID=XXXXX
+AWS_SECRET_ACCESS_KEY=XXXXX
+S3_BUCKET=XXXXX
+S3_URL=XXXXX
+```
+
+## Ruby で S3 を使う
+
+```ruby
+s3 = Aws::S3::Client.new
+response = s3.list_buckets
+puts response.buckets.map(&:name)
+```
+
+## S3バケットポリシーの設定
+
+```json
+{
+  "Version": "2012-10-17",
+  "Id": "Policy1462541770992",
+  "Statement": [
+    {
+      "Sid": "Stmt1462541763410",
+      "Effect": "Allow",
+      "Principal": "*",
+      "Action": "s3:*",
+      "Resource": "arn:aws:s3:::static-rails/*"
+    }
+  ]
+}
+```
