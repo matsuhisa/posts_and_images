@@ -1,12 +1,16 @@
 # テキストの投稿と、画像の投稿
 
-* Ruby on Rails 4.2
-* Ruby 2.2
-
-* テキスト
+* テキストと画像をアップロードする
 * 画像
  * 画像の保存はS3に行う
  * 画像投稿のgem は利用しない
+
+## 環境
+
+* Ruby on Rails 4.2
+* Ruby 2.2
+
+# 目次
 
 # scaffold
 
@@ -100,6 +104,8 @@ module ApplicationHelper
   end
 end
 ```
+
+## 完了画面
 
 # その他
 
